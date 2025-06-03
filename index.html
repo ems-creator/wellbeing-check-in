@@ -11,28 +11,32 @@
     label { display: block; margin-top: 1rem; font-weight: bold; }
     textarea, input, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; border-radius: 5px; border: 1px solid #ccc; }
     button { margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: #2b7cff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    .scale-options { display: flex; justify-content: space-between; margin-top: 0.5rem; }
   </style>
 </head>
 <body>
-  <form id="wellbeing-form" name="wellbeing-form">
+  <form action="https://formsubmit.co/ellie.starr@bytedance.com" method="POST">
     <h2>Weekly Wellbeing Check-in</h2>
 
+    <!-- FormSubmit configuration -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Wellbeing Check-in Submission">
+    <input type="hidden" name="_template" value="table">
+
     <label for="mood">How have you felt overall this week?</label>
-    <select name="mood" id="mood" required>
+    <select name="Mood" id="mood" required>
       <option value="">Select...</option>
       <option>😄 Energised & positive</option>
       <option>🙂 Mostly okay</option>
-      <option>😐 Meh / indifferent</option>
+      <option>😐 Indifferent</option>
       <option>😟 Drained or struggling</option>
       <option>😢 Burnt out or low</option>
     </select>
 
     <label for="moodReason">Would you like to share why? (optional)</label>
-    <textarea name="moodReason" id="moodReason" rows="3"></textarea>
+    <textarea name="Mood Reason" id="moodReason" rows="3"></textarea>
 
     <label for="satisfaction">Work satisfaction this week (1–5):</label>
-    <select name="satisfaction" id="satisfaction" required>
+    <select name="Satisfaction" id="satisfaction" required>
       <option value="">Select...</option>
       <option>1 – Very unsatisfied</option>
       <option>2</option>
@@ -42,10 +46,10 @@
     </select>
 
     <label for="satisfactionReason">What made your week better or worse? (optional)</label>
-    <textarea name="satisfactionReason" id="satisfactionReason" rows="3"></textarea>
+    <textarea name="Satisfaction Reason" id="satisfactionReason" rows="3"></textarea>
 
     <label for="support">I felt supported by my team/manager (1–5):</label>
-    <select name="support" id="support" required>
+    <select name="Support" id="support" required>
       <option value="">Select...</option>
       <option>1 – Strongly disagree</option>
       <option>2</option>
@@ -55,39 +59,19 @@
     </select>
 
     <label for="improvement">One thing that could have improved your wellbeing:</label>
-    <textarea name="improvement" id="improvement" rows="3"></textarea>
+    <textarea name="Wellbeing Suggestion" id="improvement" rows="3"></textarea>
 
     <label for="followup">Would you like someone to check in with you?</label>
-    <select name="followup" id="followup">
+    <select name="Follow-up" id="followup">
       <option value="">Select...</option>
       <option>✅ Yes – please</option>
       <option>❌ No thanks – just sharing</option>
     </select>
 
     <label for="name">If yes, leave your name (optional):</label>
-    <input type="text" name="name" id="name" />
+    <input type="text" name="Name" id="name" />
 
     <button type="submit">Submit</button>
   </form>
-
-  <script>
-    const form = document.getElementById('wellbeing-form');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch('https://script.google.com/macros/s/AKfycbwlDwLz1pKMsDWj4zqX1RU5s_MDptCFLb8qfxgEu5LGaITnXp9wE2lHI4ZOCNIOhadm/exec', {
-        method: 'POST',
-        body: formData
-      })
-      .then(() => {
-        alert('Thank you! Your feedback has been submitted.');
-        form.reset();
-      })
-      .catch(error => {
-        alert('Something went wrong. Please try again later.');
-        console.error(error);
-      });
-    });
-  </script>
 </body>
 </html>
