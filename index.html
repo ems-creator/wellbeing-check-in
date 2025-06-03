@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly Wellbeing Check-in</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
+    form { max-width: 600px; margin: auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    textarea, input, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; border-radius: 5px; border: 1px solid #ccc; }
+    button { margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: #2b7cff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .scale-options { display: flex; justify-content: space-between; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <form id="wellbeing-form" name="wellbeing-form">
+    <h2>Weekly Wellbeing Check-in</h2>
+
+    <label for="mood">How have you felt overall this week?</label>
+    <select name="mood" id="mood" required>
+      <option value="">Select...</option>
+      <option>😄 Energised & positive</option>
+      <option>🙂 Mostly okay</option>
+      <option>😐 Meh / indifferent</option>
+      <option>😟 Drained or struggling</option>
+      <option>😢 Burnt out or low</option>
+    </select>
+
+    <label for="moodReason">Would you like to share why? (optional)</label>
+    <textarea name="moodReason" id="moodReason" rows="3"></textarea>
+
+    <label for="satisfaction">Work satisfaction this week (1–5):</label>
+    <select name="satisfaction" id="satisfaction" required>
+      <option value="">Select...</option>
+      <option>1 – Very unsatisfied</option>
+      <option>2</option>
+      <option>3 – Neutral</option>
+      <option>4</option>
+      <option>5 – Very satisfied</option>
+    </select>
+
+    <label for="satisfactionReason">What made your week better or worse? (optional)</label>
+    <textarea name="satisfactionReason" id="satisfactionReason" rows="3"></textarea>
+
+    <label for="support">I felt supported by my team/manager (1–5):</label>
+    <select name="support" id="support" required>
+      <option value="">Select...</option>
+      <option>1 – Strongly disagree</option>
+      <option>2</option>
+      <option>3 – Neutral</option>
+      <option>4</option>
+      <option>5 – Strongly agree</option>
+    </select>
+
+    <label for="improvement">One thing that could have improved your wellbeing:</label>
+    <textarea name="improvement" id="improvement" rows="3"></textarea>
+
+    <label for="followup">Would you like someone to check in with you?</label>
+    <select name="followup" id="followup">
+      <option value="">Select...</option>
+      <option>✅ Yes – please</option>
+      <option>❌ No thanks – just sharing</option>
+    </select>
+
+    <label for="name">If yes, leave your name (optional):</label>
+    <input type="text" name="name" id="name" />
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('wellbeing-form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+        method: 'POST',
+        body: formData
+      })
+      .then(() => {
+        alert('Thank you! Your feedback has been submitted.');
+        form.reset();
+      })
+      .catch(error => {
+        alert('Something went wrong. Please try again later.');
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
